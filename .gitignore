@@ -1,0 +1,62 @@
+# Ignore VS Code settings
+.vscode/
+
+# Ignore all files without an extension
+[^.]*  
+[!.]*
+
+
+# Compiled binary files
+*.out
+*.o
+*.obj
+*.exe
+*.a
+*.so
+*.dll
+*.dylib
+
+# C and C++ specific
+a.out
+*.gch
+*.swp
+*.swo
+*.gcda
+*.gcno
+*.gcov
+*.dSYM/
+
+# Python specific
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+venv/
+env/
+*.egg-info/
+*.ipynb_checkpoints/
+
+# Swift specific
+*.xcworkspace/
+*.xcodeproj/
+*.swiftpm/
+.build/
+Packages/
+.swiftpm/
+DerivedData/
+
+# Java specific
+*.class
+*.jar
+*.war
+*.ear
+*.log
+*.iml
+*.idea/
+*.gradle/
+.gradle/
+build/
+target/
+
+# macOS system files
+.DS_Store

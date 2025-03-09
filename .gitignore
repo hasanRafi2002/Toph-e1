@@ -1,9 +1,7 @@
 # Ignore VS Code settings
 .vscode/
 
-# Ignore all files without an extension
-[^.]*  
-[!.]*
+
 
 
 # Compiled binary files

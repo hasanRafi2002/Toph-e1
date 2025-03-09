@@ -1,32 +1,22 @@
 #include <stdio.h>
-#include <string.h>
-
-void formatNumber(int A) {
-    char num[12];  // Max length for 200,000,000 (8 digits + 2 commas + '\0')
-    sprintf(num, "%d", A);  // Convert integer to string
-
-    int len = strlen(num);
-    int commaCount = (len - 1) / 3;  // Number of commas needed
-
-    char result[12];  // Result string
-    int j = 0, count = 0;
-
-    // Iterate through the number and insert commas
-    for (int i = 0; i < len; i++) {
-        if (i > 0 && (len - i) % 3 == 0) {
-            result[j++] = ',';  // Insert comma before every group of 3 digits
-        }
-        result[j++] = num[i];
-    }
-
-    result[j] = '\0';  // Null-terminate the string
-
-    printf("%s\n", result);  // Print formatted number
-}
+#include <math.h>
 
 int main() {
-    int A;
-    scanf("%d", &A);
-    formatNumber(A);
+    int H, M;
+    scanf("%d %d", &H, &M);
+
+    // Step 1: Calculate angles
+    double minuteAngle = M * 6.0;               // Each minute moves 6 degrees
+    double hourAngle = (H % 12) * 30.0 + M * 0.5; // Each hour moves 30 degrees + extra 0.5 degrees per minute
+
+    // Step 2: Find absolute difference
+    double angle = fabs(hourAngle - minuteAngle);
+
+    // Step 3: Get the smaller angle
+    angle = fmin(angle, 360.0 - angle);
+
+    // Step 4: Print result with 4 decimal places
+    printf("%.4lf\n", angle);
+
     return 0;
 }

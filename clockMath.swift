@@ -17,3 +17,4 @@ if let input = readLine(){
         print(String(format:"%.4f", smallerAngle))
     }
 }
+

@@ -1,23 +1,27 @@
 import Foundation
 
-func factorialLast4Digits(_ n: Int) -> Int {
-    var result = 1
-    for i in 2...n {
-        result *= i
-        result %= 10000  // Keep only the last 4 digits
-    }
-    return result
-}
+// Read input string
+if let input = readLine() {
+    var result = ""
 
-// Read input
-if let input = readLine(), let N = Int(input) {
-    let fact = factorialLast4Digits(N)
-
-    if fact == 0 {
-        print("0000") // If the last 4 digits are all zeros
-    } else if fact > 1000 {
-        print(String(format: "%04d", fact)) // Ensure 4 digits with leading zeros
-    } else {
-        print(fact) // Print normally for 4-digit numbers
+    // Convert the first character to uppercase and add to result
+    if let firstChar = input.first {
+        result.append(firstChar.uppercased())
     }
+
+    // Process the rest of the characters
+    for char in input.dropFirst() {
+        switch char {
+        case "s": result.append("$")
+        case "i": result.append("!")
+        case "o": result.append("()") // Replace 'o' with "()"
+        default: result.append(char)
+        }
+    }
+
+    // Append a period at the end
+    result.append(".")
+
+    // Output the transformed password
+    print(result)
 }

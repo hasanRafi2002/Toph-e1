@@ -1,22 +1,27 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
 int main() {
-    int N;
-    cin >> N;
+    string A;
+    cin >> A;
 
-    long long result = 1;
-    for (int i = 2; i <= N; i++) {
-        result *= i;
-        result %= 10000;  // Keep only the last 4 digits
+    // Convert first character to uppercase
+    if (!A.empty()) {
+        A[0] = toupper(A[0]);
     }
 
-    // Check if more than 3 trailing zeros exist
-    if (result % 10000 == 0) {  // Means last 4 digits are all zeros
-        cout << "0000" << endl;
-    } else {
-        cout << result << endl;
+    // Replace characters as per the given rules
+    for (char &c : A) {
+        if (c == 's') c = '$';
+        else if (c == 'i') c = '!';
+        else if (c == 'o') c = '(';
     }
+
+    // Append a period at the end
+    A += '.';
+
+    // Output the transformed password
+    cout << A << endl;
 
     return 0;
 }

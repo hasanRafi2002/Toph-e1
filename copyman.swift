@@ -1,24 +1,23 @@
 import Foundation
 
+func factorialLast4Digits(_ n: Int) -> Int {
+    var result = 1
+    for i in 2...n {
+        result *= i
+        result %= 10000  // Keep only the last 4 digits
+    }
+    return result
+}
+
 // Read input
-if let input = readLine() {
-    let values = input.split(separator: " ").compactMap { Int($0) }
-    
-    if values.count == 2 {
-        let H = values[0]
-        let M = values[1]
+if let input = readLine(), let N = Int(input) {
+    let fact = factorialLast4Digits(N)
 
-        // Step 1: Calculate angles
-        let minuteAngle = Double(M) * 6.0 // Each minute moves 6 degrees
-        let hourAngle = Double(H % 12) * 30.0 + Double(M) * 0.5 // Each hour moves 30 degrees + extra 0.5 per minute
-
-        // Step 2: Find absolute difference
-        let angle = abs(hourAngle - minuteAngle)
-
-        // Step 3: Get the smaller angle
-        let smallerAngle = min(angle, 360.0 - angle)
-
-        // Step 4: Print the result with 4 decimal places
-        print(String(format: "%.4f", smallerAngle))
+    if fact == 0 {
+        print("0000") // If the last 4 digits are all zeros
+    } else if fact > 1000 {
+        print(String(format: "%04d", fact)) // Ensure 4 digits with leading zeros
+    } else {
+        print(fact) // Print normally for 4-digit numbers
     }
 }

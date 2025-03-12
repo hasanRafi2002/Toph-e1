@@ -1,27 +1,27 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
-string caesarCipher(string message, int shift) {
-    for (char &c : message) {
-        if (c >= 'a' && c <= 'z') {  // Lowercase letters
-            c = (c - 'a' - shift + 26) % 26 + 'a';
-        } 
-        else if (c >= 'A' && c <= 'Z') {  // Uppercase letters
-            c = (c - 'A' - shift + 26) % 26 + 'A';
+int main() {
+    string N;
+    cin >> N;
+
+    int freq[10] = {0};
+
+    // Count frequency of each digit
+    for (char digit : N) {
+        freq[digit - '0']++;
+    }
+
+    // Find the most frequent digit (smallest in case of tie)
+    int maxFreq = 0, resultDigit = 0;
+    for (int i = 0; i < 10; i++) {
+        if (freq[i] > maxFreq) {
+            maxFreq = freq[i];
+            resultDigit = i;
         }
     }
-    return message;
-}
 
-int main() {
-    int N;
-    string message;
-    
-    cin >> N;
-    cin.ignore(); // Ignore newline character after N
-    getline(cin, message);
-    
-    cout << caesarCipher(message, N) << endl;
-    
+    cout << resultDigit << endl;
     return 0;
 }

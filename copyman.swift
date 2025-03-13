@@ -1,15 +1,26 @@
 import Foundation
 
-if let input = readLine() {
-    let values = input.split(separator: " ").compactMap { Int($0) }
-    
-    if values.count == 2 {
-        let X = values[0]
-        let Y = values[1]
-        
-        let remainder = Y % X
-        let additionalChocolates = (remainder == 0) ? 0 : (X - remainder)
-        
-        print(additionalChocolates)
+func findMinimumNotes(_ N: Int) {
+    let denominations = [500, 100, 50, 10, 5, 1] // Descending order
+    var amount = N
+    var result: [Int] = []
+
+    // Find the minimum number of notes
+    for note in denominations {
+        while amount >= note {
+            amount -= note
+            result.append(note)
+        }
     }
+
+    // Sort in ascending order
+    result.sort()
+
+    // Print the result
+    print(result.map { String($0) }.joined(separator: " "))
+}
+
+// Read input and call function
+if let input = readLine(), let N = Int(input) {
+    findMinimumNotes(N)
 }

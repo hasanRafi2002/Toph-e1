@@ -1,27 +1,32 @@
 #include <iostream>
-#include <string>
+#include <vector>
+#include <algorithm> 
+
 using namespace std;
 
-int main() {
-    string N;
-    cin >> N;
+void findMinimumNotes(int N) {
+    vector<int> denominations = {500, 100, 50, 10, 5, 1}; // Sorted in descending order
+    vector<int> result;
 
-    int freq[10] = {0};
-
-    // Count frequency of each digit
-    for (char digit : N) {
-        freq[digit - '0']++;
-    }
-
-    // Find the most frequent digit (smallest in case of tie)
-    int maxFreq = 0, resultDigit = 0;
-    for (int i = 0; i < 10; i++) {
-        if (freq[i] > maxFreq) {
-            maxFreq = freq[i];
-            resultDigit = i;
+    for (int note : denominations) {
+        while (N >= note) {
+            N -= note;
+            result.push_back(note);
         }
     }
 
-    cout << resultDigit << endl;
+    // Sort the notes in ascending order before printing
+    sort(result.begin(), result.end());
+
+    for (int note : result) {
+        cout << note << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    int N;
+    cin >> N; 
+    findMinimumNotes(N);
     return 0;
 }

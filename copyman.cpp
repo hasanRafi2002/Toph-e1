@@ -1,32 +1,39 @@
 #include <iostream>
 #include <vector>
-#include <algorithm> 
+#include <cmath>
+#include <limits>
 
 using namespace std;
 
-void findMinimumNotes(int N) {
-    vector<int> denominations = {500, 100, 50, 10, 5, 1}; // Sorted in descending order
-    vector<int> result;
-
-    for (int note : denominations) {
-        while (N >= note) {
-            N -= note;
-            result.push_back(note);
-        }
-    }
-
-    // Sort the notes in ascending order before printing
-    sort(result.begin(), result.end());
-
-    for (int note : result) {
-        cout << note << " ";
-    }
-    cout << endl;
+// Function to calculate Euclidean distance
+double distance(pair<int, int> p1, pair<int, int> p2) {
+    return sqrt(pow(p2.first - p1.first, 2) + pow(p2.second - p1.second, 2));
 }
 
 int main() {
     int N;
-    cin >> N; 
-    findMinimumNotes(N);
+    cin >> N;
+    
+    vector<pair<int, int>> points(N);
+    
+    for (int i = 0; i < N; i++) {
+        cin >> points[i].first >> points[i].second;
+    }
+
+    double minDist = numeric_limits<double>::max();
+    
+    // Brute-force approach to check all pairs
+    for (int i = 0; i < N; i++) {
+        for (int j = i + 1; j < N; j++) {
+            double dist = distance(points[i], points[j]);
+            if (dist < minDist) {
+                minDist = dist;
+            }
+        }
+    }
+
+    // Print result with precision
+    printf("%.6lf\n", minDist);
+
     return 0;
 }

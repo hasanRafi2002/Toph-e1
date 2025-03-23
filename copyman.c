@@ -1,40 +1,44 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <math.h>
+#include <float.h>
 
-void findMinimumNotes(int N) {
-    int denominations[] = {500, 100, 50, 10, 5, 1}; // Denominations in descending order
-    int noteCount = 0, result[10000]; // Array to store notes used
-    int i, j;
-
-    // Find the minimum number of notes
-    for (i = 0; i < 6; i++) {
-        while (N >= denominations[i]) { 
-            N -= denominations[i]; // Reduce N by the note value
-            result[noteCount++] = denominations[i]; // Store the note
-        }
-    }
-
-    // Sort the notes in ascending order (Bubble Sort)
-    for (i = 0; i < noteCount - 1; i++) {
-        for (j = 0; j < noteCount - i - 1; j++) {
-            if (result[j] > result[j + 1]) {
-                int temp = result[j];
-                result[j] = result[j + 1];
-                result[j + 1] = temp;
-            }
-        }
-    }
-
-    // Print the notes in ascending order
-    for (i = 0; i < noteCount; i++) {
-        printf("%d ", result[i]);
-    }
-    printf("\n");
+// Function to calculate the distance between two points
+double distance(int x1, int y1, int x2, int y2) {
+    return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 }
 
 int main() {
     int N;
-    scanf("%d", &N); // Read input
-    findMinimumNotes(N); // Find and print notes
+
+    // Read the number of points
+    scanf("%d", &N);
+
+    // Declare an array to store the points (x, y)
+    int points[N][2];
+
+    // Read the coordinates of each point
+    for (int i = 0; i < N; i++) {
+        scanf("%d %d", &points[i][0], &points[i][1]);
+    }
+
+    // Initialize the minimum distance to a large value
+    double minDist = FLT_MAX;
+
+    // Compare all pairs of points
+    for (int i = 0; i < N; i++) {
+        for (int j = i + 1; j < N; j++) {
+            // Calculate the distance between points[i] and points[j]
+            double dist = distance(points[i][0], points[i][1], points[j][0], points[j][1]);
+
+            // Update the minimum distance if a smaller distance is found
+            if (dist < minDist) {
+                minDist = dist;
+            }
+        }
+    }
+
+    // Print the minimum distance with required precision
+    printf("%.14f\n", minDist);
+
     return 0;
 }

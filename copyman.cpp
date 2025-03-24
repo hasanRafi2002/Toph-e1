@@ -1,17 +1,30 @@
 #include <iostream>
+#include <sstream>
 using namespace std;
 
+// Function to check if a word is fully uppercase
+bool isUppercase(const string &word) {
+    for (char ch : word) {
+        if (!isupper(ch)) return false;
+    }
+    return true;
+}
+
 int main() {
-    string A, B;
-    cin >> A >> B;
+    string line, word, result;
+    getline(cin, line); // Read the input line
 
-    int lastDigitA = A.back() - '0';  // Extract last digit of A
-    int lastDigitB = B.back() - '0';  // Extract last digit of B
+    stringstream ss(line);
+    bool first = true;
 
-    if ((lastDigitA + lastDigitB) % 2 == 0)
-        cout << "Black" << endl;
-    else
-        cout << "White" << endl;
+    while (ss >> word) {
+        if (!isUppercase(word)) {
+            if (!first) result += " "; // Add space before next word
+            result += word;
+            first = false;
+        }
+    }
 
+    cout << result << endl;
     return 0;
 }

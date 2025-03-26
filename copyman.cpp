@@ -1,30 +1,18 @@
 #include <iostream>
-#include <sstream>
+#include <string>
 using namespace std;
 
-// Function to check if a word is fully uppercase
-bool isUppercase(const string &word) {
-    for (char ch : word) {
-        if (!isupper(ch)) return false;
-    }
-    return true;
-}
-
 int main() {
-    string line, word, result;
-    getline(cin, line); // Read the input line
+    string input;
+    getline(cin, input);  // Read full line (supports spaces)
 
-    stringstream ss(line);
-    bool first = true;
-
-    while (ss >> word) {
-        if (!isUppercase(word)) {
-            if (!first) result += " "; // Add space before next word
-            result += word;
-            first = false;
+    int count = 0;
+    for (char c : input) {
+        if (c == 'X' || c == 'x') {  
+            count++;  
         }
     }
 
-    cout << result << endl;
+    cout << count << endl;
     return 0;
 }

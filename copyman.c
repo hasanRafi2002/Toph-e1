@@ -1,17 +1,17 @@
 #include <stdio.h>
-#include <string.h>
 
 int main() {
-    char input[101];  
-    fgets(input, sizeof(input), stdin);  
-
-    int count = 0;
-    for (int i = 0; i < strlen(input); i++) {
-        if (input[i] == 'X' || input[i] == 'x') {  
-            count++;
-        }
-    }
-
-    printf("%d\n", count);  
+    int totalSum, a, b, c;
+    
+    // Input the total sum and the three known numbers
+    scanf("%d", &totalSum);
+    scanf("%d %d %d", &a, &b, &c);
+    
+    // Calculate the missing number by subtracting the sum of the known numbers from the total sum
+    int missingNumber = totalSum - (a + b + c);
+    
+    // Output the missing number
+    printf("%d\n", missingNumber);
+    
     return 0;
 }

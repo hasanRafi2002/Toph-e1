@@ -1,17 +1,19 @@
 #include <stdio.h>
 
 int main() {
-    int totalSum, a, b, c;
-    
-    // Input the total sum and the three known numbers
-    scanf("%d", &totalSum);
-    scanf("%d %d %d", &a, &b, &c);
-    
-    // Calculate the missing number by subtracting the sum of the known numbers from the total sum
-    int missingNumber = totalSum - (a + b + c);
-    
-    // Output the missing number
-    printf("%d\n", missingNumber);
-    
+    int N;
+    scanf("%d", &N);  // Read the number of elements
+
+    int maxVal = 0;  // Initialize max with the lowest possible value
+
+    for (int i = 0; i < N; i++) {
+        int num;
+        scanf("%d", &num);
+        if (num > maxVal) {
+            maxVal = num;  // Update max if the current number is greater
+        }
+    }
+
+    printf("%d\n", maxVal);  // Print the maximum value
     return 0;
 }

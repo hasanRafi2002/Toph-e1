@@ -1,16 +1,11 @@
 import Foundation
 
-// Read the total sum of the four numbers
-let totalSum = Int(readLine()!)!
-
-// Read the three known numbers
-let numbers = readLine()!.split(separator: " ").map { Int($0)! }
-
-// Calculate the sum of the three known numbers
-let knownSum = numbers.reduce(0, +)
-
-// Calculate the missing number
-let missingNumber = totalSum - knownSum
-
-// Output the missing number
-print(missingNumber)
+// Read N
+if let N = Int(readLine()!) {
+    // Read N numbers and convert them to an array of integers
+    let numbers = readLine()!.split(separator: " ").prefix(N).compactMap { Int($0) }
+    
+    if let maxVal = numbers.max() {
+        print(maxVal) // Print the maximum value
+    }
+}

@@ -1,19 +1,15 @@
 #include <stdio.h>
 
 int main() {
-    int N;
-    scanf("%d", &N);  // Read the number of elements
+    unsigned int a = 5;   // 0101 in binary
+    unsigned int b = 9;   // 1001 in binary
 
-    int maxVal = 0;  // Initialize max with the lowest possible value
+    printf("a & b = %d\n", a & b);   // 0001 = 1
+    printf("a | b = %d\n", a | b);   // 1101 = 13
+    printf("a ^ b = %d\n", a ^ b);   // 1100 = 12
+    printf("~a = %d\n", ~a);         // ...1010 (depends on int size)
+    printf("b << 1 = %d\n", b << 1); // 10010 = 18
+    printf("b >> 1 = %d\n", b >> 1); // 0100 = 4
 
-    for (int i = 0; i < N; i++) {
-        int num;
-        scanf("%d", &num);
-        if (num > maxVal) {
-            maxVal = num;  // Update max if the current number is greater
-        }
-    }
-
-    printf("%d\n", maxVal);  // Print the maximum value
     return 0;
 }

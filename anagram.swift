@@ -3,12 +3,11 @@ import Foundation
 let A = readLine()!
 let B = readLine()!
 
-// Convert to lowercase and sort
 let sortedA = String(A.lowercased().sorted())
 let sortedB = String(B.lowercased().sorted())
 
 if sortedA == sortedB {
     print("Yes")
-} else {
+}else{
     print("No")
 }

@@ -1,22 +1,11 @@
 #include <iostream>
-#include <algorithm>
-#include <cctype>
 using namespace std;
 
 int main() {
-    string A, B;
-    cin >> A >> B;
+    int Y;
+    cin >> Y;
 
-    // Convert both strings to lowercase
-    transform(A.begin(), A.end(), A.begin(), ::tolower);
-    transform(B.begin(), B.end(), B.begin(), ::tolower);
-
-    // Sort both strings
-    sort(A.begin(), A.end());
-    sort(B.begin(), B.end());
-
-    // Compare sorted strings
-    if (A == B) {
+    if ((Y % 4 == 0 && Y % 100 != 0) || (Y % 400 == 0)) {
         cout << "Yes" << endl;
     } else {
         cout << "No" << endl;

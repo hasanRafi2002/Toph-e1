@@ -1,14 +1,9 @@
 import Foundation
 
-let A = readLine()!
-let B = readLine()!
-
-// Convert to lowercase and sort
-let sortedA = String(A.lowercased().sorted())
-let sortedB = String(B.lowercased().sorted())
-
-if sortedA == sortedB {
-    print("Yes")
-} else {
-    print("No")
+if let input = readLine(), let year = Int(input) {
+    if (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0) {
+        print("Yes")
+    } else {
+        print("No")
+    }
 }

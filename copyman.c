@@ -1,24 +1,30 @@
 #include <stdio.h>
 
 int main() {
-    int N, A, B;
-    scanf("%d %d %d", &N, &A, &B);
+    char s[26];  // Assuming the input will be at most 25 characters + 1 for '\0'
+    scanf("%s", s);
 
-    int arr[100];  // Max size as per constraint: N < 100
+    int balance = 0;
 
-    // Input the array elements
-    for (int i = 0; i < N; i++) {
-        scanf("%d", &arr[i]);
+    for (int i = 0; s[i] != '\0'; i++) {
+        if (s[i] == '(') {
+            balance++;
+        } else if (s[i] == ')') {
+            balance--;
+            if (balance < 0) {
+                // A closing parenthesis without a matching opening one
+                printf("No\n");
+                return 0;
+            }
+        }
     }
 
-    // Calculate the sum from index A to B (inclusive)
-    int sum = 0;
-    for (int i = A; i <= B; i++) {
-        sum += arr[i];
+    // Check if all opening parentheses are closed
+    if (balance == 0) {
+        printf("Yes\n");
+    } else {
+        printf("No\n");
     }
-
-    // Output the result
-    printf("%d\n", sum);
 
     return 0;
 }

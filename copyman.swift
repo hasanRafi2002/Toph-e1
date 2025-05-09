@@ -1,19 +1,25 @@
 import Foundation
 
-// Read the input values
-let input = readLine()!.split(separator: " ").map { Int($0)! }
-let N = input[0]
-let A = input[1]
-let B = input[2]
+// Read input from the user
+if let input = readLine() {
+    var balance = 0
+    var isValid = true
 
-// Read the array elements
-let arr = readLine()!.split(separator: " ").map { Int($0)! }
+    for char in input {
+        if char == "(" {
+            balance += 1
+        } else if char == ")" {
+            balance -= 1
+            if balance < 0 {
+                isValid = false
+                break
+            }
+        }
+    }
 
-// Calculate the sum from index A to B (inclusive)
-var sum = 0
-for i in A...B {
-    sum += arr[i]
+    if isValid && balance == 0 {
+        print("Yes")
+    } else {
+        print("No")
+    }
 }
-
-// Output the result
-print(sum)

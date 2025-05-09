@@ -1,26 +1,32 @@
 #include <iostream>
-#include <vector>
+#include <string>
 using namespace std;
 
 int main() {
-    int N, A, B;
-    cin >> N >> A >> B;
+    string s;
+    cin >> s;
 
-    vector<int> arr(N);
+    int balance = 0;
 
-    // Input the array elements
-    for (int i = 0; i < N; i++) {
-        cin >> arr[i];
+    for (char ch : s) {
+        if (ch == '(') {
+            balance++;
+        } else if (ch == ')') {
+            balance--;
+            // If at any point balance is negative, it's invalid
+            if (balance < 0) {
+                cout << "No" << endl;
+                return 0;
+            }
+        }
     }
 
-    // Calculate the sum from index A to B (inclusive)
-    int sum = 0;
-    for (int i = A; i <= B; i++) {
-        sum += arr[i];
+    // After processing all characters, balance must be 0
+    if (balance == 0) {
+        cout << "Yes" << endl;
+    } else {
+        cout << "No" << endl;
     }
-
-    // Output the result
-    cout << sum << endl;
 
     return 0;
 }
